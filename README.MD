@@ -63,55 +63,57 @@ Stores:
 
 ## 📂 Project Structure
 
-AyurVision/
+```
+AyurDrishti/
 │
 ├── backend/
-│ ├── model/
-│ │ ├── leaf_model.h5
-│ │ └── labels.txt
-│ ├── routes/
-│ │ ├── predict.py
-│ │ └── chatbot.py
-│ ├── db.py
-│ ├── gemini_fetch.py
-│ ├── app.py
-│ ├── requirements.txt
-│ └── .env
+│   ├── model/
+│   │   ├── leaf_model.h5
+│   │   └── labels.txt
+│   ├── routes/
+│   │   ├── predict.py
+│   │   └── chatbot.py
+│   ├── db.py
+│   ├── gemini_fetch.py
+│   ├── app.py
+│   ├── requirements.txt
+│   └── .env
 │
 ├── frontend/
-│ ├── src/
-│ │ ├── api/
-│ │ ├── components/
-│ │ ├── pages/
-│ │ └── App.jsx
-│ └── package.json
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── App.jsx
+│   └── package.json
 │
 └── README.md
+```
 
 ---
 
 ## ⚙️ Backend Setup
 
 ### 1️⃣ Create virtual environment    
-```
+```bash
 cd backend
 python -m venv venv
 venv\Scripts\activate
 ```
 
 ### 2️⃣ Install dependencies
-```
+```bash
 pip install -r requirements.txt
 ```
 
 ### 3️⃣ Add `.env`
-```
+```env
 MONGO_URI=your_mongodb_uri
 GEMINI_API_KEY=your_gemini_api_key
 ```
 
 ### 4️⃣ Run backend
-```
+```bash
 python app.py
 ```
 
@@ -122,7 +124,7 @@ Runs at: **http://127.0.0.1:5000**
 ## 🖥️ Frontend Setup
 
 ### Install & run
-```
+```bash
 cd frontend
 npm install
 npm run dev
@@ -148,23 +150,32 @@ Chatbot Ayurvedic response.
 - Base: **MobileNetV2**
 - Image size: **224×224**
 - 80 plant classes
-- labels.txt sample:
-
+- labels.txt format:
+  ```
+  0 Allium_cepa_(Onion)
+  1 Azadirachta_indica_(Neem)
+  2 Carica_papaya_(Papaya)
+  ```
 
 ---
 
 ## ⭐ Example Output
 
 ### 🌿 Plant Identification
-Scientific Name: Ficus_religiosa
-Common Name: Peepal
-Uses: Helps in skin issues, diabetes, cough, and inflammation
-
+```json
+{
+  "scientific_name": "Ficus_religiosa",
+  "common_name": "Peepal",
+  "uses": "Helps in skin issues, diabetes, cough, and inflammation"
+}
+```
 
 ### 🤖 Chatbot Response
+```
 Fever often signals pitta imbalance. Try Guduchi 3g twice daily.
 Consult a doctor for persistent symptoms.
+```
 
 ---
 
-## AI + Ayurveda = Smarter healing 🌿  
+## 💡 Made with AI + Ayurveda = Smarter healing 🌿
