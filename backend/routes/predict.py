@@ -10,13 +10,20 @@ from gemini_fetch import get_use_from_gemini
 
 predict_plant = Blueprint("predict_plant", __name__)
 
-# ✅ Define these BEFORE using them
+# MODEL + LABEL FILE
 MODEL_PATH = "model/leaf_model.h5"
-TRAIN_PATH = "data/train"
+LABEL_FILE = "model/labels.txt"
 
-# Load model & labels
 model = load_model(MODEL_PATH)
-labels = sorted(os.listdir(TRAIN_PATH))
+
+# Load labels from labels.txt
+labels = []
+with open(LABEL_FILE, "r") as f:
+    for line in f:
+        parts = line.strip().split(" ", 1)
+        if len(parts) == 2:
+            labels.append(parts[1])
+
 
 def extract_names(folder_name):
     scientific = folder_name
@@ -35,6 +42,7 @@ def predict():
         return jsonify({"error": "No image uploaded"}), 400
 
     file = request.files["image"]
+
     img = Image.open(io.BytesIO(file.read())).convert("RGB")
     img = img.resize((224, 224))
     img_array = np.array(img) / 255.0
